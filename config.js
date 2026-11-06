@@ -17,7 +17,7 @@ window.PLANEAT_CONFIG = {
   },
   // App Check (reCAPTCHA Enterprise site key; public by design)
   APPCHECK_SITE_KEY: "6Lc69hIuAAAAAGNUjjrxgzICTdUvRazB1QvbMafE",
-  // Local testing only: App Check debug token for http://localhost:8000. Never deploy a real value.
+  // Leave empty. For localhost, store the App Check debug token in the browser instead (see HANDOFF.md).
   APPCHECK_DEBUG_TOKEN: "",
   GEMINI_API_KEY: "",
   GEMINI_MODEL: "gemini-3.5-flash-lite",

@@ -144,7 +144,11 @@
         // reCAPTCHA doesn't run on localhost, so local testing uses a registered debug token from config.js.
         if (CFG.APPCHECK_SITE_KEY) {
           const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-          if (local && CFG.APPCHECK_DEBUG_TOKEN) self.FIREBASE_APPCHECK_DEBUG_TOKEN = CFG.APPCHECK_DEBUG_TOKEN;
+          // debug token: set once in the browser console on localhost, never committed:
+          //   localStorage.setItem('planeat.debugToken', '<token from Firebase console → App Check → Manage debug tokens>')
+          let dbg = CFG.APPCHECK_DEBUG_TOKEN || '';
+          try { dbg = dbg || localStorage.getItem('planeat.debugToken') || ''; } catch {}
+          if (local && dbg) self.FIREBASE_APPCHECK_DEBUG_TOKEN = dbg;
           appCheck.initializeAppCheck(app, { provider: new appCheck.ReCaptchaEnterpriseProvider(CFG.APPCHECK_SITE_KEY), isTokenAutoRefreshEnabled: true });
         }
         return { ...ai, instance: ai.getAI(app, { backend: new ai.GoogleAIBackend() }) };

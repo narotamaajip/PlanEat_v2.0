@@ -27,13 +27,16 @@ Data lives only in the browser (`localStorage` key `planeat.v1`). No accounts ye
 
 ## Security
 - App Check: reCAPTCHA Enterprise key `6Lc69hIuAAAAAGNUjjrxgzICTdUvRazB1QvbMafE` (domains: web.app + firebaseapp.com), registered in the console. **Enforcement for Firebase AI Logic is NOT switched on yet**: confirm real-device traffic shows as *Verified* in Firebase console → App Check → APIs, then Enforce.
-- Localhost needs an App Check debug token: create it in console → App Check → Apps → ⋮ → Manage debug tokens, put it in a local, uncommitted copy of `config.js` as `APPCHECK_DEBUG_TOKEN`. Never commit it.
+- Localhost needs an App Check debug token: Firebase console → App Check → Apps → PlanEat Web → ⋮ → Manage debug tokens → add one. Then, once, in the browser console on http://localhost:8000: `localStorage.setItem('planeat.debugToken', '<token>')`. It is read from the browser only (never put it in a file or commit it).
 - The Firebase browser API key is restricted to the two hosting domains + `http://localhost:8000/*` and Firebase APIs only (no Generative Language API).
 
 ## Run / deploy
 - Local: `python3 -m http.server 8000` → http://localhost:8000
 - Deploy: `firebase deploy --only hosting`
 - **Never run `firebase init hosting` again: it overwrites `index.html` and creates `404.html`.**
+
+## Roadmap and migration from PlanEat_v1.0
+See `docs/MIGRATION.md` (what to reuse from the old repo, what not to, Firestore model, work packages, first Antigravity prompt).
 
 ## Known limits / next steps
 1. Login (Google) + saving meal records in Firestore (one document per user per day; owner-only rules, see `PlanEat_v1.0/frontend/firestore.rules` for a good pattern).
