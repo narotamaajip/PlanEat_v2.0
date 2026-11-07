@@ -5,7 +5,7 @@ AI powered calorie tracker (Liquid Glass UI, installable PWA). Plain HTML/CSS/JS
 ## How the AI is called
 - `config.js` holds `FIREBASE_CONFIG` (public web-app config). With it, Gemini runs through **Firebase AI Logic**, so no API key lives in the browser.
 - Without it, `GEMINI_API_KEY` (local testing only) is used; with neither, the app runs in Demo mode.
-- Model is set by `GEMINI_MODEL` (default `gemini-3.5-flash`).
+- Model is set by `GEMINI_MODEL` (default `gemini-3.5-flash-lite`).
 
 ## Run locally
     python3 -m http.server 8000     # then open http://localhost:8000

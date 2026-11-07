@@ -463,7 +463,6 @@ Account for visible cooking oil, frying, sauces, sambal, dressings and toppings.
 If the photo shows no food or drink, return an empty items list.`,
       prompt: details ? `Extra details from the user: ${details}` : 'The user added no extra details.',
       schema: FOOD_SCHEMA,
-      temperature: 0.2,
       image: { mimeType, data },
     });
     return (r.items || []).map(cleanItem).filter((i) => i.name);
@@ -482,7 +481,6 @@ Respect any quantities, sizes, brands or cooking methods the user mentions. Comb
 Include drinks; black coffee, tea and water are 0–5 kcal. If the text describes no food or drink at all, return an empty items list.`,
       prompt: text,
       schema: FOOD_SCHEMA,
-      temperature: 0.2,
     });
     return (r.items || []).map(cleanItem).filter((i) => i.name);
   }
@@ -1402,7 +1400,7 @@ Include drinks; black coffee, tea and water are 0–5 kcal. If the text describe
           <div class="wk-stats">
             <div class="stat inner"><small>Avg / day</small><b>${fmt(w.avg.calories)}<span>kcal</span></b></div>
             <div class="stat inner"><small>Days logged</small><b>${w.logged.length}<span>/ ${w.days.filter((d) => !d.future).length}</span></b></div>
-            <div class="stat inner"><small>On target</small><b>${onTarget}<span>days</span></b></div>
+            <div class="stat inner"><small>On target</small><b>${onTarget}<span>day${onTarget === 1 ? '' : 's'}</span></b></div>
           </div>
         </section>
         <section class="card glass" style="--d:1">
