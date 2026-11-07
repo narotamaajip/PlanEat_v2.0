@@ -1,7 +1,7 @@
 /* PlanEat service worker: keeps the app shell available offline.
    Network first (so updates and config.js changes show up immediately), cache as the fallback.
    Only same-origin GET requests are handled; Gemini / Firebase calls are never touched. */
-const CACHE = 'planeat-shell-v3';
+const CACHE = 'planeat-shell-v4';
 const SHELL = [
   './', 'index.html', 'styles.css', 'app.js', 'config.js', 'manifest.webmanifest',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png', 'icons/favicon.svg',
